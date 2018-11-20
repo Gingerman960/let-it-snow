@@ -7,6 +7,8 @@ let snowArr = [];
 function preload() {
 }
 function setup() {
+    frameRate(30);
+    noStroke();
     createCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
     mcLogo = loadImage('assets/mcLogo.svg');
     snow = loadImage('assets/snow.svg');
@@ -15,7 +17,11 @@ function setup() {
     /*song.setVolume(.5);
     //song.loop();
     song.play();*/
-    for (let i = 0; i < 500; i++) {
+
+    /*const canvasElt = createCanvas(400, 600);
+    canvasElt.style.width = '100%', canvasElt.style.height = '100%';*/
+
+    for (let i = 0; i < 1000; i++) {
         snowArr[i] = new Flake();
     }
 }
@@ -34,12 +40,12 @@ function triggerSong() {
 }
 
 function draw() {
-    //background('#eb1c24');
     background('black');
+    //background('#eb1c24');
     //fill(32,23,124);
     //image(mcLogo, width/2 - mcLogo.width/2, height - 220);
     //image(snow, 0, 0);
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < snowArr.length; i++) {
         snowArr[i].show();
         snowArr[i].fall();
     }
