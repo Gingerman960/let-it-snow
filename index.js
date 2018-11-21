@@ -1,8 +1,10 @@
 let song;
-let color = 255;
 let mcLogo;
-let snow;
-let snowArr = [];
+let snow = [];
+let gravity;
+let intensity;
+let drift = [];
+let blockWidth = 5;
 
 function preload() {
 }
@@ -11,8 +13,11 @@ function setup() {
     noStroke();
     createCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
     mcLogo = loadImage('assets/mcLogo.svg');
-    snow = loadImage('assets/snow.svg');
     song = loadSound('assets/let-it-snow.mp3');
+
+    for (let i = 0; i < width / blockWidth; i++) {
+        drift.push({x: i * blockWidth, y: height});
+    }
 
     /*song.setVolume(.5);
     //song.loop();
@@ -20,10 +25,6 @@ function setup() {
 
     /*const canvasElt = createCanvas(400, 600);
     canvasElt.style.width = '100%', canvasElt.style.height = '100%';*/
-
-    for (let i = 0; i < 1000; i++) {
-        snowArr[i] = new Flake();
-    }
 }
 /*document.addEventListener('click', () => triggerSong());
 document.addEventListener('keypress', (e) => {
@@ -40,14 +41,18 @@ function triggerSong() {
 }
 
 function draw() {
+    gravity = map(mouseY, height, 0, 0, 0.3 );
+    intensity = map(mouseX, 0, width, 1, 7);
     background('black');
     //background('#eb1c24');
     //fill(32,23,124);
     //image(mcLogo, width/2 - mcLogo.width/2, height - 220);
-    //image(snow, 0, 0);
-    for (let i = 0; i < snowArr.length; i++) {
-        snowArr[i].show();
-        snowArr[i].fall();
+    for (let i = 0; i < random(intensity); i++) {
+        snow.push(new Flake()); // append snowflake object
+    }
+    for (let flake of snow) {
+        flake.show();
+        flake.fall();
     }
 
 }

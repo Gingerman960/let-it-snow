@@ -8,5 +8,6 @@
   },
   "scripts": {
     "start": "browser-sync start --server -f -w"
-  }
+  },
+  "devDependencies": {}
 }
