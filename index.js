@@ -15,23 +15,20 @@ function setup() {
     mcLogo = loadImage('assets/mcLogo.svg');
     song = loadSound('assets/let-it-snow.mp3');
 
-    for (let i = 0; i < width / blockWidth; i++) {
+    /*for (let i = 0; i < width / blockWidth; i++) { // enable for snowDrifts
         drift.push({x: i * blockWidth, y: height});
-    }
+    }*/
 
-    /*song.setVolume(.5);
+    song.setVolume(.3);
     //song.loop();
-    song.play();*/
-
-    /*const canvasElt = createCanvas(400, 600);
-    canvasElt.style.width = '100%', canvasElt.style.height = '100%';*/
+    //song.play();
 }
-/*document.addEventListener('click', () => triggerSong());
+document.addEventListener('click', () => triggerSong());
 document.addEventListener('keypress', (e) => {
     if (e.code === 'Space') {
         triggerSong();
     }
-});*/
+});
 function triggerSong() {
     if (!song.isPlaying()) {
         song.play();
@@ -41,14 +38,14 @@ function triggerSong() {
 }
 
 function draw() {
-    gravity = map(mouseY, height, 0, 0, 0.3 );
-    intensity = map(mouseX, 0, width, 1, 7);
-    background('black');
+    gravity = map(mouseY, 0, height, 0, 0.3 );
+    intensity = map(mouseX, 0, width, 1, 10);
+    //background('black');
     //background('#eb1c24');
-    //fill(32,23,124);
-    //image(mcLogo, width/2 - mcLogo.width/2, height - 220);
+    background('#5aa9c2');
+    image(mcLogo, width/2 - mcLogo.width/2, height - 220);
     for (let i = 0; i < random(intensity); i++) {
-        snow.push(new Flake()); // append snowflake object
+        snow.push(new Flake());
     }
     for (let flake of snow) {
         flake.show();

@@ -45,7 +45,7 @@ function Flake() {
                 if (index !== -1) {
                     snow.splice(index, 1);
                 }
-            }, this.meltTime + gravity / 1000);
+            }, this.meltTime + gravity / 1000 - intensity * 100);
         } else {
             let angle = 0.6 * frameCount / 60 + this.fallAngle;
             this.x = width / 2 + this.radius * sin(angle);
