@@ -5,8 +5,10 @@ let gravity;
 let intensity;
 let drift = [];
 let blockWidth = 5;
+let soundImage;
 
 function preload() {
+    soundImage = document.getElementById('soundControl');
 }
 function setup() {
     frameRate(30);
@@ -23,25 +25,24 @@ function setup() {
     //song.loop();
     //song.play();
 }
-document.addEventListener('click', () => triggerSong());
 document.addEventListener('keypress', (e) => {
     if (e.code === 'Space') {
-        triggerSong();
+        toggleMusic();
     }
 });
-function triggerSong() {
+function toggleMusic() {
     if (!song.isPlaying()) {
         song.play();
+        soundImage.src = './assets/soundOn.svg';
     } else  {
         song.pause();
+        soundImage.src = './assets/soundOff.svg';
     }
 }
 
 function draw() {
     gravity = map(mouseY, 0, height, 0, 0.3 );
     intensity = map(mouseX, 0, width, 1, 10);
-    //background('black');
-    //background('#eb1c24');
     background('#5aa9c2');
     image(mcLogo, width/2 - mcLogo.width/2, height - 220);
     for (let i = 0; i < random(intensity); i++) {
