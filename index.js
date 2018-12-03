@@ -44,7 +44,7 @@ function draw() {
     gravity = map(mouseY, 0, height, 0, 0.3 );
     intensity = map(mouseX, 0, width, 1, 10);
     background('#5aa9c2');
-    image(mcLogo, width/2 - mcLogo.width/2, height - 220);
+    //image(mcLogo, width/2 - mcLogo.width/2, height - 220);
     for (let i = 0; i < random(intensity); i++) {
         snow.push(new Flake());
     }
